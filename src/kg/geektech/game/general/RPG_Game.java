@@ -10,7 +10,7 @@ public class RPG_Game {
     public static Random random = new Random();
 
     public static void start() {
-        Boss boss = new Boss(1000, 50);
+        Boss boss = new Boss(2000, 50);
         Warrior warrior = new Warrior(270, 10);
         Medic doc = new Medic(200, 5, 15);
         Magic magic = new Magic(290, 20);
@@ -33,9 +33,19 @@ public class RPG_Game {
         for (int i = 0; i < heroes.length; i++) {
             if (heroes[i].getHealth() > 0 && boss.getHealth() > 0) {
                 heroes[i].hit(boss);
-                heroes[i].applySuperPower(boss, heroes);
+                if (heroes[i] instanceof Magic) {
+                    continue;
+                } else {
+                    heroes[i].applySuperPower(boss, heroes);
+                }
             }
         }
+        for (Hero player: heroes) {
+            if (player instanceof Magic && player.getHealth()>0){
+                player.applySuperPower(boss,heroes);
+            }
+        }
+
         System.out.println("_________________________");
     }
 

@@ -18,8 +18,8 @@ public class Medic extends Hero {
                 if (heroes[i].getHealth() > 0 &&
                         this != heroes[i]) {
                     System.out.println("\t" + heroes[i].getClass().getSimpleName()
-                            + " from " + heroes[i].getHealth()
-                            + " to " + (heroes[i].getHealth() + this.healPoints));
+                            + " from: " + heroes[i].getHealth()
+                            + " to: " + (heroes[i].getHealth() + this.healPoints));
                     heroes[i].setHealth(heroes[i].getHealth() + this.healPoints);
                 }
             }

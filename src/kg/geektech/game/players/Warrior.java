@@ -11,6 +11,8 @@ public class Warrior extends Hero {
 
     @Override
     public void applySuperPower(Boss boss, Hero[] heroes) {
-        int coeff = RPG_Game.random.nextInt(4) + 2;
+        int coeff = RPG_Game.random.nextInt(3) + 2;
+            boss.setHealth(boss.getHealth() - this.getDamage() * (coeff - 1));
+            System.out.println("\tadditional damage: "+ (this.getDamage() * (coeff - 1)) + "[coeff=" + coeff + "]");
     }
 }

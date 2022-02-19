@@ -24,9 +24,7 @@ public class Berserk extends Hero {
     }
 
     public void hit(Boss boss) {
-        if (this.getHealth() > 0 && boss.getHealth() > 0) {
-            boss.setHealth(boss.getHealth()
-                    - this.getDamage() - this.getSaved_damage());
-        }
+        boss.setHealth(boss.getHealth() - this.getDamage() - this.getSaved_damage());
+        System.out.println(this.getClass().getSimpleName() + " set damage: " + (this.getDamage() + this.getSaved_damage()));
     }
 }

@@ -22,22 +22,26 @@ public class RPG_Game {
 
         while (!isGameFinished(boss, heroes)) {
             round(boss, heroes);
+            printStatistics(boss, heroes);
         }
     }
 
     private static void round(Boss boss, Hero[] heroes) {
         round_number++;
+        System.out.println(round_number + " ROUND START___________");
         boss.hit(heroes);
         for (int i = 0; i < heroes.length; i++) {
-            heroes[i].hit(boss);
-            heroes[i].applySuperPower(boss, heroes);
+            if (heroes[i].getHealth() > 0 && boss.getHealth() > 0) {
+                heroes[i].hit(boss);
+                heroes[i].applySuperPower(boss, heroes);
+            }
         }
-        printStatistics(boss, heroes);
+        System.out.println("_________________________");
     }
 
     private static boolean isGameFinished(Boss boss, Hero[] heroes) {
         if (boss.getHealth() <= 0) {
-            System.out.println("Heroes won!!!");
+            System.out.println("\n\tHeroes won!!!");
             return true;
         }
         boolean allHeroesDead = true;
@@ -48,13 +52,13 @@ public class RPG_Game {
             }
         }
         if (allHeroesDead) {
-            System.out.println("Boss won!!!");
+            System.out.println("\n\tBoss won!!!");
         }
         return allHeroesDead;
     }
 
     private static void printStatistics(Boss boss, Hero[] heroes) {
-        System.out.println(round_number + " ROUND ______________");
+        System.out.println("\n*** HEALTH STATISTICS ***");
         System.out.println("Boss health: " + boss.getHealth() + " [" +
                 boss.getDamage() + "]");
         for (int i = 0; i < heroes.length; i++) {
@@ -69,5 +73,6 @@ public class RPG_Game {
                         heroes[i].getDamage() + "]");
             }
         }
+        System.out.println("*************************\n");
     }
 }

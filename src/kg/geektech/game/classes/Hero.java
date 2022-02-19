@@ -20,8 +20,7 @@ public abstract class Hero extends GameEntity
     }
 
     public void hit(Boss boss) {
-        if (this.getHealth() > 0 && boss.getHealth() > 0) {
             boss.setHealth(boss.getHealth() - this.getDamage());
-        }
+            System.out.println(this.getClass().getSimpleName() + " set damage: " + this.getDamage());
     }
 }

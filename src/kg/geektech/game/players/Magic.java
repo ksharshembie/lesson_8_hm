@@ -21,7 +21,7 @@ public class Magic extends Hero {
 
     @Override
     public void applySuperPower(Boss boss, Hero[] heroes) {
-        magicBoost = RPG_Game.random.nextInt(10);
+        magicBoost = RPG_Game.random.nextInt(5);
         System.out.println("Magic boost: " + magicBoost);
         for (Hero player : heroes) {
             if (player.getHealth() > 0) {

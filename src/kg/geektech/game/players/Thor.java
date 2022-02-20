@@ -13,10 +13,11 @@ public class Thor extends Hero {
     @Override
     public void applySuperPower(Boss boss, Hero[] heroes) {
         boolean isOut = RPG_Game.random.nextBoolean();
-        if (boss.isBossOut() && isOut){
+        if (boss.isBossOut() && isOut) {
             isOut = false;
         }
         boss.setBossOut(isOut);
         System.out.println("\t" + this.getClass().getSimpleName() + " stunned Boss: " + isOut);
+
     }
 }

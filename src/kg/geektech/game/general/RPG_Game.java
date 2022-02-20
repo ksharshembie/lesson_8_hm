@@ -10,15 +10,16 @@ public class RPG_Game {
     public static Random random = new Random();
 
     public static void start() {
-        Boss boss = new Boss(2000, 50);
+        Boss boss = new Boss(1000, 50);
         Warrior warrior = new Warrior(270, 10);
         Medic doc = new Medic(200, 5, 15);
         Magic magic = new Magic(290, 20);
         Berserk berserk = new Berserk(260, 15);
         Medic junior = new Medic(250, 10, 5);
-        Thor thor = new Thor(300,25);
-        Witcher witcher = new Witcher(250,20);
-        Hero[] heroes = {warrior, doc, magic, berserk, junior, thor, witcher};
+        Thor thor = new Thor(300, 25);
+        Witcher witcher = new Witcher(250, 20);
+        Druid druid = new Druid(230, 20);
+        Hero[] heroes = {warrior, doc, magic, berserk, junior, thor, witcher, druid};
 
         printStatistics(boss, heroes);
 
@@ -31,18 +32,26 @@ public class RPG_Game {
     private static void round(Boss boss, Hero[] heroes) {
         round_number++;
         System.out.println(round_number + " ROUND START___________");
+        System.out.println("Boss's turn");
         boss.hit(heroes);
-        for (Hero player: heroes) {
+        boss.applySuperPower(boss, heroes);
+        System.out.println("-----------------------");
+        System.out.println("Hero's turn");
+        for (Hero player : heroes) {
             if (player.getHealth() > 0 && boss.getHealth() > 0) {
                 player.hit(boss);
-                if (!(player instanceof Magic)) {
-                    player.applySuperPower(boss, heroes);
-                }
+            }
+            if (!(player instanceof Magic) && player.getHealth() > 0 && boss.getHealth() > 0) {
+                player.applySuperPower(boss, heroes);
+            }
+            if (boss.getHealth() == 0) {
+                System.out.println(player.getClass().getSimpleName() + " killed Boss");
+                break;
             }
         }
-        for (Hero player: heroes) {
-            if (player instanceof Magic && player.getHealth()>0){
-                player.applySuperPower(boss,heroes);
+        for (Hero player : heroes) {
+            if (player instanceof Magic && player.getHealth() > 0 && boss.getHealth() > 0) {
+                player.applySuperPower(boss, heroes);
             }
         }
 
@@ -55,7 +64,7 @@ public class RPG_Game {
             return true;
         }
         boolean allHeroesDead = true;
-        for (Hero player: heroes) {
+        for (Hero player : heroes) {
             if (player.getHealth() > 0) {
                 allHeroesDead = false;
                 break;
@@ -71,7 +80,7 @@ public class RPG_Game {
         System.out.println("\n*** HEALTH STATISTICS ***");
         System.out.println("Boss health: " + boss.getHealth() + " [" +
                 boss.getDamage() + "]");
-        for (Hero player: heroes) {
+        for (Hero player : heroes) {
             if (player instanceof Medic) {
                 System.out.println(player.getClass().getSimpleName()
                         + " health: " + player.getHealth() + " [" +

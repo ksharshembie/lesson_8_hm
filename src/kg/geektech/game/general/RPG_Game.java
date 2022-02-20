@@ -19,7 +19,8 @@ public class RPG_Game {
         Thor thor = new Thor(300, 25);
         Witcher witcher = new Witcher(250, 20);
         Druid druid = new Druid(230, 20);
-        Hero[] heroes = {warrior, doc, magic, berserk, junior, thor, witcher, druid};
+        Avrora avrora = new Avrora(220, 10);
+        Hero[] heroes = {warrior, doc, magic, berserk, junior, thor, witcher, druid, avrora};
 
         printStatistics(boss, heroes);
 

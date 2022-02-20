@@ -41,6 +41,9 @@ public class Boss extends GameEntity implements HavingSuperAbility {
                             player.setHealth(player.getHealth()
                                     - this.getDamage() / 2 - druidAssist);
                             ((Berserk) player).setSaved_damage(this.getDamage() / 2 - druidAssist);
+                        } else if (player instanceof Avrora && ((Avrora) player).isInvisible()) {
+                            ((Avrora) player).setSavedDamage(((Avrora) player).getSavedDamage()
+                                    + this.getDamage() + druidAssist);
                         } else {
                             player.setHealth(player.getHealth()
                                     - this.getDamage() - druidAssist);

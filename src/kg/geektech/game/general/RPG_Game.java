@@ -10,7 +10,7 @@ public class RPG_Game {
     public static Random random = new Random();
 
     public static void start() {
-        Boss boss = new Boss(1000, 50);
+        Boss boss = new Boss(1500, 50);
         Warrior warrior = new Warrior(270, 10);
         Medic doc = new Medic(200, 5, 15);
         Magic magic = new Magic(290, 20);

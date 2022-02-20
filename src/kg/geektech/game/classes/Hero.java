@@ -5,10 +5,12 @@ import kg.geektech.game.players.Boss;
 public abstract class Hero extends GameEntity
         implements HavingSuperAbility {
     private SuperAbility ability;
+    private int originHealth;
 
     public Hero(int health, int damage, SuperAbility ability) {
         super(health, damage);
         this.ability = ability;
+        this.originHealth = health;
     }
 
     public SuperAbility getAbility() {
@@ -17,6 +19,14 @@ public abstract class Hero extends GameEntity
 
     public void setAbility(SuperAbility ability) {
         this.ability = ability;
+    }
+
+    public int getOriginHealth() {
+        return originHealth;
+    }
+
+    public void setOriginHealth(int originHealth) {
+        this.originHealth = originHealth;
     }
 
     public void hit(Boss boss) {

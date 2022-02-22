@@ -2,25 +2,18 @@ package kg.geektech.game.general;
 
 import kg.geektech.game.classes.Hero;
 import kg.geektech.game.players.*;
-
+import java.util.Scanner;
 import java.util.Random;
 
 public class RPG_Game {
     private static int round_number;
     public static Random random = new Random();
+    public static Scanner console = new Scanner(System.in);
 
     public static void start() {
-        Boss boss = new Boss(1500, 50);
-        Warrior warrior = new Warrior(270, 10);
-        Medic doc = new Medic(200, 5, 15);
-        Magic magic = new Magic(290, 20);
-        Berserk berserk = new Berserk(260, 15);
-        Medic junior = new Medic(250, 10, 5);
-        Thor thor = new Thor(300, 25);
-        Witcher witcher = new Witcher(250, 20);
-        Druid druid = new Druid(230, 20);
-        Avrora avrora = new Avrora(220, 10);
-        Hero[] heroes = {warrior, doc, magic, berserk, junior, thor, witcher, druid, avrora};
+
+        Hero[] heroes = selectHeroes();
+        Boss boss = selectBoss();
 
         printStatistics(boss, heroes);
 
@@ -29,6 +22,7 @@ public class RPG_Game {
             printStatistics(boss, heroes);
         }
     }
+
 
     private static void round(Boss boss, Hero[] heroes) {
         round_number++;
@@ -94,5 +88,42 @@ public class RPG_Game {
             }
         }
         System.out.println("*************************\n");
+    }
+
+    private static Boss selectBoss(){
+        Boss boss1 = new Boss(1000, 50);
+        Boss boss2 = new Boss(2000, 60);
+        Boss boss3 = new Boss(3000, 70);
+        Boss boss4 = new Boss(4000, 80);
+        Boss boss5 = new Boss(5000, 90);
+        Boss superBoss = new Boss(10000, 100);
+        Boss[] boss = {boss1,boss2,boss3, boss4, boss5,superBoss};
+        System.out.println("Boss list: ");
+        for (int i = 0; i < boss.length; i++) {
+            System.out.println("\tLevel " + i + " - health: " + boss[i].getHealth() + "; damage: " + boss[i].getDamage());
+        }
+        System.out.print("Please select Boss level: ");
+        int level = console.nextInt();
+        System.out.println(" ");
+        return boss[level];
+    }
+
+    private static Hero[] selectHeroes(){
+        Warrior warrior = new Warrior(270, 10);
+        Medic doc = new Medic(200, 5, 15);
+        Magic magic = new Magic(290, 20);
+        Berserk berserk = new Berserk(260, 15);
+        Medic junior = new Medic(250, 10, 5);
+        Thor thor = new Thor(300, 25);
+        Witcher witcher = new Witcher(250, 20);
+        Druid druid = new Druid(230, 20);
+        Avrora avrora = new Avrora(220, 10);
+        Hero[] heroes = {warrior, doc, magic, berserk, junior, thor, witcher, druid, avrora};
+        System.out.println("Heroes list: ");
+        for (int i = 0; i < heroes.length; i++) {
+            System.out.println("\t" + heroes[i].getClass().getSimpleName() + " - health: " + heroes[i].getHealth() + "; damage: " + heroes[i].getDamage());
+        }
+        System.out.println(" ");
+        return heroes;
     }
 }

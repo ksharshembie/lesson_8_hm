@@ -120,8 +120,8 @@ public class RPG_Game {
         Avrora avrora = new Avrora(220, 10);
         Hero[] heroes = {warrior, doc, magic, berserk, junior, thor, witcher, druid, avrora};
         System.out.println("Heroes list: ");
-        for (int i = 0; i < heroes.length; i++) {
-            System.out.println("\t" + heroes[i].getClass().getSimpleName() + " - health: " + heroes[i].getHealth() + "; damage: " + heroes[i].getDamage());
+        for (Hero player: heroes) {
+            System.out.println("\t" + player.getClass().getSimpleName() + " - health: " + player.getHealth() + "; damage: " + player.getDamage());
         }
         System.out.println(" ");
         return heroes;
